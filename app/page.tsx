@@ -55,7 +55,7 @@ export default function Home() {
               <Dumbbell className="w-6 h-6 text-primary-foreground" />
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-foreground">
-              کوچ فیت
+              امیر ربیع پور - برنامه تمرینی و تغذیه اختصاصی
             </h1>
           </div>
           <p className="text-center text-muted-foreground max-w-md mx-auto">
@@ -72,7 +72,7 @@ export default function Home() {
           labels={stepLabels}
         />
 
-        <div className="bg-card rounded-3xl border border-border p-6 md:p-8 shadow-xl shadow-black/20">
+        <div className="bg-card rounded-3xl border border-border p-6 md:p-8 shadow-xl shadow-slate-200/80">
           <AnimatePresence mode="wait">
             {currentStep === 1 && (
               <motion.div

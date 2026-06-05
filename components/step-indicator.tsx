@@ -17,17 +17,16 @@ export function StepIndicator({ currentStep, totalSteps, labels }: StepIndicator
           <div className="flex flex-col items-center">
             <motion.div
               initial={{ scale: 0.8 }}
-              animate={{ 
+              animate={{
                 scale: currentStep === step ? 1.1 : 1,
-                backgroundColor: currentStep > step 
-                  ? "oklch(0.65 0.2 145)" 
-                  : currentStep === step 
-                    ? "oklch(0.65 0.2 145)" 
-                    : "oklch(0.22 0.01 250)"
+                backgroundColor: currentStep > step
+                  ? "var(--primary)"
+                  : currentStep === step
+                    ? "var(--primary)"
+                    : "var(--secondary)"
               }}
-              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
-                currentStep >= step ? "text-primary-foreground" : "text-muted-foreground"
-              }`}
+              className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all ${currentStep >= step ? "text-primary-foreground" : "text-muted-foreground"
+                }`}
             >
               {currentStep > step ? (
                 <Check className="w-5 h-5" />
@@ -35,9 +34,8 @@ export function StepIndicator({ currentStep, totalSteps, labels }: StepIndicator
                 step
               )}
             </motion.div>
-            <span className={`text-xs mt-2 hidden sm:block ${
-              currentStep >= step ? "text-primary" : "text-muted-foreground"
-            }`}>
+            <span className={`text-xs mt-2 hidden sm:block ${currentStep >= step ? "text-primary" : "text-muted-foreground"
+              }`}>
               {labels[index]}
             </span>
           </div>

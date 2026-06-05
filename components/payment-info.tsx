@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Copy, Check, CreditCard, MessageCircle } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getSelectedProgramInfo } from "./program-selector"
 
 interface PaymentInfoProps {
@@ -11,8 +11,23 @@ interface PaymentInfoProps {
 
 export function PaymentInfo({ selectedProgram }: PaymentInfoProps) {
   const [copied, setCopied] = useState(false)
-  const cardNumber = "6037-9971-1234-5678"
+  const [remainingSeconds, setRemainingSeconds] = useState(60 * 60)
+  const cardNumber = "6037-9974-3612-9036"
   const programInfo = getSelectedProgramInfo(selectedProgram)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRemainingSeconds((prev) => (prev > 0 ? prev - 1 : 0))
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  const minutes = Math.floor(remainingSeconds / 60)
+  const seconds = remainingSeconds % 60
+  const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`
 
   const copyToClipboard = async () => {
     try {
@@ -24,7 +39,7 @@ export function PaymentInfo({ selectedProgram }: PaymentInfoProps) {
     }
   }
 
-  const telegramLink = "https://t.me/YourCoachUsername"
+  const telegramLink = "https://t.me/amirrabipoor"
 
   return (
     <motion.div
@@ -53,10 +68,10 @@ export function PaymentInfo({ selectedProgram }: PaymentInfoProps) {
           </div>
           <div>
             <h3 className="text-lg font-bold text-foreground">اطلاعات کارت بانکی</h3>
-            <p className="text-sm text-muted-foreground">بانک ملی ایران - به نام محمد رضایی</p>
+            <p className="text-sm text-muted-foreground">بانک ملی ایران - به نام امیر ربیع پور</p>
           </div>
         </div>
-        
+
         <div className="flex items-center justify-between p-4 rounded-xl bg-secondary">
           <span className="font-mono text-lg tracking-wider text-foreground" dir="ltr">
             {cardNumber}
@@ -78,6 +93,18 @@ export function PaymentInfo({ selectedProgram }: PaymentInfoProps) {
             )}
           </button>
         </div>
+
+        <div className="mt-4 rounded-2xl bg-primary/10 border border-primary/20 p-4">
+          <p className="text-sm font-medium text-foreground mb-2">
+            شماره کارت تا ۶۰ دقیقه دیگر معتبر است.
+          </p>
+          <p className="text-lg font-bold text-primary">زمان باقی‌مانده: {formattedTime}</p>
+          {remainingSeconds === 0 && (
+            <p className="text-sm text-destructive mt-2">
+              اعتبار کارت به پایان رسیده است. لطفاً صفحه را تازه کنید یا دوباره پرداخت را امتحان کنید.
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Instructions */}
@@ -85,15 +112,15 @@ export function PaymentInfo({ selectedProgram }: PaymentInfoProps) {
         <h4 className="font-bold text-foreground mb-3">مراحل پرداخت:</h4>
         <ol className="space-y-2 text-sm text-muted-foreground">
           <li className="flex items-start gap-2">
-            <span className="w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center shrink-0 mt-0.5">۱</span>
+            <span className="w-5 h-5 rounded-full  text-xs flex items-center justify-center shrink-0 mt-0.5">۱</span>
             مبلغ فوق را به شماره کارت واریز کنید
           </li>
           <li className="flex items-start gap-2">
-            <span className="w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center shrink-0 mt-0.5">۲</span>
+            <span className="w-5 h-5 rounded-full  text-xs flex items-center justify-center shrink-0 mt-0.5">۲</span>
             اسکرین‌شات فیش واریزی را ذخیره کنید
           </li>
           <li className="flex items-start gap-2">
-            <span className="w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center shrink-0 mt-0.5">۳</span>
+            <span className="w-5 h-5 rounded-full  text-xs flex items-center justify-center shrink-0 mt-0.5">۳</span>
             روی دکمه زیر کلیک کرده و فیش را در تلگرام ارسال کنید
           </li>
         </ol>
@@ -104,7 +131,7 @@ export function PaymentInfo({ selectedProgram }: PaymentInfoProps) {
         href={telegramLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-[#0088cc] text-white font-bold text-lg hover:bg-[#0088cc]/90 transition-colors"
+        className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-primary text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-colors"
       >
         <MessageCircle className="w-6 h-6" />
         ارسال فیش در تلگرام

@@ -14,7 +14,7 @@ const programs = [
     title: "بدنسازی حرفه‌ای",
     description: "برنامه تخصصی برای ورزشکاران حرفه‌ای و رقابتی",
     icon: Trophy,
-    price: "۴۵۰,۰۰۰",
+    price: "۲,۵۰۰,۰۰۰",
     features: ["برنامه ۴ روز در هفته", "پشتیبانی ۲۴ ساعته", "ویدیو آموزشی"]
   },
   {
@@ -22,7 +22,7 @@ const programs = [
     title: "بدنسازی آماتور",
     description: "برنامه مناسب برای شروع یا ادامه مسیر ورزشی",
     icon: Dumbbell,
-    price: "۲۵۰,۰۰۰",
+    price: "۲,۵۰۰,۰۰۰",
     features: ["برنامه ۳ روز در هفته", "پشتیبانی روزانه", "راهنمای تمرین"]
   },
   {
@@ -30,7 +30,7 @@ const programs = [
     title: "برنامه غذایی",
     description: "رژیم غذایی اختصاصی متناسب با اهداف شما",
     icon: Salad,
-    price: "۲۰۰,۰۰۰",
+    price: "۲,۵۰۰,۰۰۰",
     features: ["منوی هفتگی", "لیست خرید", "جایگزین غذایی"]
   }
 ]
@@ -41,7 +41,7 @@ export function ProgramSelector({ selectedProgram, onSelect }: ProgramSelectorPr
       {programs.map((program, index) => {
         const Icon = program.icon
         const isSelected = selectedProgram === program.id
-        
+
         return (
           <motion.button
             key={program.id}
@@ -49,11 +49,10 @@ export function ProgramSelector({ selectedProgram, onSelect }: ProgramSelectorPr
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             onClick={() => onSelect(program.id)}
-            className={`relative p-6 rounded-2xl border-2 text-right transition-all ${
-              isSelected 
-                ? "border-primary bg-primary/10" 
+            className={`relative p-6 rounded-2xl border-2 text-right transition-all ${isSelected
+                ? "border-primary bg-primary/10"
                 : "border-border bg-card hover:border-primary/50"
-            }`}
+              }`}
           >
             {isSelected && (
               <motion.div
@@ -64,16 +63,15 @@ export function ProgramSelector({ selectedProgram, onSelect }: ProgramSelectorPr
                 <Check className="w-4 h-4 text-primary-foreground" />
               </motion.div>
             )}
-            
-            <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${
-              isSelected ? "bg-primary" : "bg-secondary"
-            }`}>
+
+            <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${isSelected ? "bg-primary" : "bg-secondary"
+              }`}>
               <Icon className={`w-7 h-7 ${isSelected ? "text-primary-foreground" : "text-primary"}`} />
             </div>
-            
+
             <h3 className="text-lg font-bold text-foreground mb-2">{program.title}</h3>
             <p className="text-sm text-muted-foreground mb-4">{program.description}</p>
-            
+
             <div className="space-y-2 mb-4">
               {program.features.map((feature, i) => (
                 <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -82,7 +80,7 @@ export function ProgramSelector({ selectedProgram, onSelect }: ProgramSelectorPr
                 </div>
               ))}
             </div>
-            
+
             <div className="pt-4 border-t border-border">
               <span className="text-2xl font-bold text-primary">{program.price}</span>
               <span className="text-sm text-muted-foreground mr-1">تومان</span>
