@@ -7,6 +7,7 @@ interface UserInfoFormProps {
   formData: {
     name: string
     height: string
+    phone?: string
     weight: string
     experience: string
   }
@@ -41,10 +42,11 @@ export function UserInfoForm({ formData, onChange }: UserInfoFormProps) {
             قد (سانتی‌متر)
           </label>
           <input
-            type="number"
+            type="tel"
+            inputMode="numeric"
             value={formData.height}
             onChange={(e) => onChange("height", e.target.value)}
-            placeholder="مثال: ۱۷۵"
+            placeholder="مثال: 175"
             className="w-full px-4 py-3 rounded-xl bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
           />
         </div>
@@ -55,10 +57,26 @@ export function UserInfoForm({ formData, onChange }: UserInfoFormProps) {
             وزن (کیلوگرم)
           </label>
           <input
-            type="number"
+            type="tel"
+            inputMode="numeric"
             value={formData.weight}
             onChange={(e) => onChange("weight", e.target.value)}
-            placeholder="مثال: ۷۰"
+            placeholder="مثال: 70"
+            className="w-full px-4 py-3 rounded-xl bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-foreground flex items-center gap-2">
+            <User className="w-4 h-4 text-primary" />
+            شماره تلفن
+          </label>
+          <input
+            type="tel"
+            inputMode="tel"
+            value={formData.phone || ""}
+            onChange={(e) => onChange("phone", e.target.value)}
+            placeholder="مثال: 09123456789"
             className="w-full px-4 py-3 rounded-xl bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
           />
         </div>

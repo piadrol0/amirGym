@@ -7,9 +7,11 @@ import { getSelectedProgramInfo } from "./program-selector"
 
 interface PaymentInfoProps {
   selectedProgram: string | null
+  orderId: string | null
+  customerName: string
 }
 
-export function PaymentInfo({ selectedProgram }: PaymentInfoProps) {
+export function PaymentInfo({ selectedProgram, orderId, customerName }: PaymentInfoProps) {
   const [copied, setCopied] = useState(false)
   const [remainingSeconds, setRemainingSeconds] = useState(60 * 60)
   const cardNumber = "6037-9974-3612-9036"
@@ -39,7 +41,17 @@ export function PaymentInfo({ selectedProgram }: PaymentInfoProps) {
     }
   }
 
-  const telegramLink = "https://t.me/amirrabipoor"
+  const telegramLink = `https://t.me/amirrabipoor?text=${encodeURIComponent(
+    `سلام 👋
+
+کد سفارش: ${orderId || "-"}
+
+نام: ${customerName || "-"}
+برنامه: ${programInfo?.title || "-"}
+مبلغ: ${programInfo?.price || "-"} تومان
+
+فیش پرداخت ارسال شد.`
+  )}`
 
   return (
     <motion.div
@@ -50,6 +62,10 @@ export function PaymentInfo({ selectedProgram }: PaymentInfoProps) {
       {/* Order Summary */}
       <div className="p-6 rounded-2xl bg-card border border-border">
         <h3 className="text-lg font-bold text-foreground mb-4">خلاصه سفارش</h3>
+        <div className="flex justify-between items-center py-3 border-b border-border">
+          <span className="text-muted-foreground">کد سفارش</span>
+          <span className="font-medium text-foreground">{orderId || "-"}</span>
+        </div>
         <div className="flex justify-between items-center py-3 border-b border-border">
           <span className="text-muted-foreground">نوع برنامه</span>
           <span className="font-medium text-foreground">{programInfo?.title || "-"}</span>

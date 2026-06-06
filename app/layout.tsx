@@ -10,25 +10,15 @@ const vazir = Vazirmatn({
 })
 
 export const metadata: Metadata = {
-  title: 'کوچ فیت | مربی شخصی شما',
+  title: 'امیرحسین ربیع پور | مربی شخصی شما',
   description: 'دریافت برنامه تمرینی و تغذیه اختصاصی از مربی حرفه‌ای',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
         url: '/icon-light-32x32.png',
         media: '(prefers-color-scheme: light)',
       },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
     ],
-    apple: '/apple-icon.png',
   },
 }
 
