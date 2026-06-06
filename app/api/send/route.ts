@@ -13,12 +13,10 @@ export async function POST(req: Request) {
       },
     });
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: "armanem84@gmail.com",
-      subject: "ثبت نام جدید باشگاه",
-      text: `
+    const baseText = `
 ثبت سفارش جدید
+
+کد سفارش: ${data.orderId || "-"}
 
 نام: ${data.name}
 
@@ -29,7 +27,15 @@ export async function POST(req: Request) {
 سابقه تمرینی: ${data.experience}
 
 برنامه انتخابی: ${data.program}
-`,
+`;
+
+    const notesText = data.notes ? `\nتوضیحات اضافی:\n${data.notes}\n` : "";
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: "armanem84@gmail.com",
+      subject: `ثبت نام جدید باشگاه - کد سفارش: ${data.orderId || "-"}`,
+      text: baseText + notesText,
     });
 
     return NextResponse.json({ success: true });

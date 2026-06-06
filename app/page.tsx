@@ -20,7 +20,8 @@ export default function Home() {
     height: "",
     phone: "",
     weight: "",
-    experience: ""
+    experience: "",
+    notes: ""
   })
 
   useEffect(() => {
@@ -68,6 +69,7 @@ export default function Home() {
           height: formData.height,
           weight: formData.weight,
           phone: formData.phone,
+          notes: formData.notes,
           experience: formData.experience,
           program: selectedProgram,
         }),

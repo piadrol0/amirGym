@@ -8,6 +8,7 @@ interface UserInfoFormProps {
     name: string
     height: string
     phone?: string
+    notes?: string
     weight: string
     experience: string
   }
@@ -105,6 +106,8 @@ export function UserInfoForm({ formData, onChange }: UserInfoFormProps) {
         </label>
         <textarea
           placeholder="هدف، محدودیت‌ها یا سوابق پزشکی خاص..."
+          value={formData.notes || ""}
+          onChange={(e) => onChange("notes", e.target.value)}
           className="w-full px-4 py-3 rounded-xl bg-input border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all min-h-[100px] resize-none"
         />
       </div>
