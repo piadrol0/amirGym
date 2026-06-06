@@ -29,6 +29,7 @@ export function UserInfoForm({ formData, onChange }: UserInfoFormProps) {
             نام و نام خانوادگی
           </label>
           <input
+            required
             type="text"
             value={formData.name}
             onChange={(e) => onChange("name", e.target.value)}
@@ -43,6 +44,7 @@ export function UserInfoForm({ formData, onChange }: UserInfoFormProps) {
             قد (سانتی‌متر)
           </label>
           <input
+            required
             type="tel"
             inputMode="numeric"
             value={formData.height}
@@ -58,6 +60,7 @@ export function UserInfoForm({ formData, onChange }: UserInfoFormProps) {
             وزن (کیلوگرم)
           </label>
           <input
+            required
             type="tel"
             inputMode="numeric"
             value={formData.weight}
@@ -73,6 +76,7 @@ export function UserInfoForm({ formData, onChange }: UserInfoFormProps) {
             شماره تلفن
           </label>
           <input
+            required
             type="tel"
             inputMode="tel"
             value={formData.phone || ""}
