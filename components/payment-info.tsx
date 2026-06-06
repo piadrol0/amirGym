@@ -89,7 +89,7 @@ export function PaymentInfo({ selectedProgram, orderId, customerName }: PaymentI
         </div>
 
         <div className="flex items-center justify-between p-4 rounded-xl bg-secondary">
-          <span className="font-mono text-lg tracking-wider text-foreground" dir="ltr">
+          <span className="font-mono text-lg tracking-wider text-foreground md:text-xl" dir="ltr">
             {cardNumber}
           </span>
           <button
