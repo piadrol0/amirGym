@@ -33,7 +33,8 @@ export async function POST(req: Request) {
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: "amirrabbi20@gmail.com",
+      to: "armanem84@gmail.com",
+      // to: "amirrabbi20@gmail.com",
       subject: `ثبت نام جدید باشگاه - کد سفارش: ${data.orderId || "-"}`,
       text: baseText + notesText,
     });
